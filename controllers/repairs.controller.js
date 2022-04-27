@@ -78,8 +78,14 @@ const deleteRepair = async (req, res) => {
         status: 'succes',
       });
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
 };
 
-module.exports = { getAllRepairs, createDate, getRepairById, updateRepair, deleteRepair };
+module.exports = {
+  getAllRepairs,
+  createDate,
+  getRepairById,
+  updateRepair,
+  deleteRepair,
+};
