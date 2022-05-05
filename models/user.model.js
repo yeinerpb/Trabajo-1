@@ -20,7 +20,7 @@ const User = db.define('user', {
   role: {
     type: DataTypes.STRING,
     unique: false,
-    allowNull: false,
+    defaultValue: 'admin'
   },
   password: {
     type: DataTypes.STRING,

@@ -1,5 +1,11 @@
 const express = require('express');
 
+//Middlewares
+const { repairPending } = require('../middlewares/rerpairs.middlewares');
+const {
+  createRepairValidations,
+  checkValidations,
+} = require('../middlewares/validations.middlewares');
 const {
   getAllRepairs,
   createDate,
@@ -10,12 +16,15 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(getAllRepairs).post(createDate);
+router
+  .route('/')
+  .get(getAllRepairs)
+  .post(createRepairValidations, checkValidations, createDate);
 
 router
   .route('/:id')
-  .get(getRepairById)
-  .patch(updateRepair)
-  .delete(deleteRepair);
+  .get(repairPending, getRepairById)
+  .patch(repairPending, updateRepair)
+  .delete(repairPending, deleteRepair);
 
 module.exports = { repairsRouter: router };
