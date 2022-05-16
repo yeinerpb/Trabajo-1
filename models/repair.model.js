@@ -12,11 +12,11 @@ const Repair = db.define('repair', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  computerNumber:{
+  computerNumber: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  comment:{
+  comment: {
     type: DataTypes.STRING,
     allowNull: false,
   },

@@ -3,8 +3,6 @@ const { User } = require('../models/user.model');
 
 const { catchAsync } = require('../utils/catchAsync');
 
-
-
 const getAllRepairs = catchAsync(async (req, res, next) => {
   const repairs = await Repair.findAll({
     where: {

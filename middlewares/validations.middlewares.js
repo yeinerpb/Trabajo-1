@@ -12,6 +12,7 @@ const createUserValidations = [
     .withMessage('Password is not defined')
     .isLength({ min: 8 })
     .withMessage('The password must have a minimum of 8 charaters'),
+  body('role').notEmpty().withMessage('Role is not defined'),
 ];
 
 const createRepairValidations = [

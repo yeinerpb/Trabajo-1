@@ -17,17 +17,18 @@ const User = db.define('user', {
     unique: true,
     allowNull: false,
   },
-  role: {
-    type: DataTypes.STRING,
-    unique: false,
-    defaultValue: 'admin'
-  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: 'employee',
+  },
   status: {
     type: DataTypes.STRING,
+    allowNull: false,
     defaultValue: 'active',
   },
 });
