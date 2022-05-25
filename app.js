@@ -1,5 +1,8 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan');
 
 //Controllers
 const { globalErrorHandler } = require('./controllers/errors.controllers');
@@ -12,6 +15,13 @@ const { usersRouter } = require('./routes/users.routes');
 const app = express();
 
 app.use(express.json());
+
+app.use(helmet());
+
+app.use(compression());
+
+if (process.env.NODE_ENV === 'develoment') app.use(morgan('dev'));
+else app.use(morgan('combinet'));
 
 const limiter = rateLimit({
   max: 10000,

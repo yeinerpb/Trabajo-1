@@ -35,9 +35,10 @@ const protectToken = catchAsync(async (req, res, next) => {
 });
 
 const protectAccountOwner = catchAsync(async (req, res, next) => {
-  const { sessionUser, user } = req;
+  const { id } = req.params
+  const { sessionUser } = req;
 
-  if (sessionUser.id !== user.id) {
+  if (sessionUser.id !== +id) {
     return next(new AppError('You do not this account', 403));
   }
 
@@ -55,8 +56,19 @@ const userExists = catchAsync(async (req, res, next) => {
   if (!user) {
     return next(new AppError('User not found given that id', 404));
   }
-  req.user = user;
+  req.sessionUser = user;
+  next();
+});
+const protectEmployee = catchAsync(async (req, res, next) => {
+  const { sessionUser } = req;
+  if (sessionUser.role !== 'employee')
+    return next(new AppError('Acces not granted', 403));
   next();
 });
 
-module.exports = { userExists, protectToken, protectAccountOwner };
+module.exports = {
+  userExists,
+  protectToken,
+  protectAccountOwner,
+  protectEmployee,
+};
