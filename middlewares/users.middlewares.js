@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models/user.model');
 
 const { catchAsync } = require('../utils/catchAsync');
-
 const { AppError } = require('../utils/appError');
 
 const protectToken = catchAsync(async (req, res, next) => {
@@ -41,7 +40,6 @@ const protectAccountOwner = catchAsync(async (req, res, next) => {
   if (sessionUser.id !== +id) {
     return next(new AppError('You do not this account', 403));
   }
-
   next();
 });
 
